@@ -63,8 +63,8 @@ const App = () => {
 
   return (
     <>
-      <div className={`${width < 640 ? 'flex justify-center mt-3 h-full w-full' : 'flex justify-center text-center h-full w-full mt-8'}`}>
-        <div className={`container h-[550px] flex flex-col md:w-[w${maxMD}px] md:h-[580px]`}
+      <div className={`${width < 640 ? 'flex justify-center mt-5 h-full w-full' : 'flex justify-center text-center h-full w-full mt-8'}`}>
+        <div className={`container h-[580px] flex flex-col md:w-[w${maxMD}px]`}
           style={{ width: `${maxW}px`, ...(width > 786 && { maxWidth: `${maxMD}px` }) }}>
           {(width <= 768) ? showLogin ?
             (showList ?
