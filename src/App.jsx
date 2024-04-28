@@ -29,11 +29,12 @@ const App = () => {
   console.log(maxW)
   const maxMD = (width - 100);
 
- 
+
 
   useEffect(() => {
     console.log(firebase.user)
     if (sign.signupPage || firebase.user) {
+      console.log("firebase user")
       setShowLogin(true)
       if (login.loginPage) {
         setShowList(true)
@@ -62,37 +63,38 @@ const App = () => {
 
   return (
     <>
-      <div className={`container h-[550px] flex flex-col md:w-[w${maxMD}px] md:h-[580px]`}
-       style={{ width: `${maxW}px`, ...(width > 786 && { maxWidth: `${maxMD}px` }) }}>
-        {(width <= 768) ? showLogin ?
-          (showList ?
-            (showChat ?
-              (showDetail ? <Details /> : <Chat />)
+      <div className={`${width < 640 ? 'flex justify-center mt-3 h-full w-full' : 'flex justify-center text-center h-full w-full mt-8'}`}>
+        <div className={`container h-[550px] flex flex-col md:w-[w${maxMD}px] md:h-[580px]`}
+          style={{ width: `${maxW}px`, ...(width > 786 && { maxWidth: `${maxMD}px` }) }}>
+          {(width <= 768) ? showLogin ?
+            (showList ?
+              (showChat ?
+                (showDetail ? <Details /> : <Chat />)
+                :
+                <List />
+              )
               :
-              <List />
+              <Login />
             )
             :
-            <Login />
-          )
-          :
-          (<Signup />)
-          :
-          showLogin ?
-          (showList ?
-            <div className="flex justify-between">
-            <List className='flex flex-1'/>
-            <Chat className='flex flex-2'/>
-            <Details className='flex flex-1'/>
-            </div>
+            (<Signup />)
             :
-            <Login />
-          )
-          :
-          (<Signup />)
-        }
-        <Notification />
+            showLogin ?
+              (showList ?
+                <div className="flex justify-between">
+                  <List className='flex flex-1' />
+                  <Chat className='flex flex-2' />
+                  <Details className='flex flex-1' />
+                </div>
+                :
+                <Login />
+              )
+              :
+              (<Signup />)
+          }
+          <Notification />
+        </div>
       </div>
-
     </>
   );
 }

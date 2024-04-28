@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setSignupPage } from '../../Redux/slices/signupSlice';
 import upload from '../../firebase/upload';
 import { db, useFirebase } from '../../firebase/Firebase';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
   const firebase = useFirebase();
@@ -61,8 +62,8 @@ const Signup = () => {
   return (
     <div className='flex flex-col items-center pt-5 px-3'>
       <div className='w-full max-w-md'>
-        <h1 className='text-xl font-bold text-center mb-4'>Step into ChatPlace</h1>
-        <p className='text-lg text-center mb-4 text-[#5082FC]'>Your Gateway to Seamless Conversations!</p>
+        <h1 className='text-xl font-bold text-center mb-4 md:text-3xl md:font-bold'>Step into ChatPlace</h1>
+        <p className='text-lg text-center mb-4 text-[#76BDFF] md:font-mono md:font-semibold'>Your Gateway to Seamless Conversations!</p>
         <div className='rounded-lg p-3'>
           <Formik
             initialValues={{ email: '', password: '', username: '' }}
@@ -126,7 +127,8 @@ const Signup = () => {
         </div>
         <div className='mt-1 text-center px-6'>
           <p className='text-sm'>Already have an account?</p>
-          <button className='text-[#5082FC] cursor-pointer bg-black/25 p-2 rounded-md w-full'>
+          <button onClick={()=>dispatch(setSignupPage(true))}
+           className='text-[#5082FC] cursor-pointer bg-black/25 p-2 rounded-md w-full'>
             Log In
           </button>
         </div>
