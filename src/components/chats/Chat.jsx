@@ -154,7 +154,7 @@ const Chat = () => {
       <hr className="opacity-15" />
 
 
-      <div className="flex flex-col overflow-y-scroll h-[430px] md:h-[455px]">
+      <div className="flex flex-col overflow-y-scroll h-[455px]">
         {chat?.messages && chat.messages.map(message => (
           <div
             className={message.senderId === currentUser?.id ? "message own bg-[#5082FC] my-1.5 mx-1 p-1.5 rounded-md w-48 sm:w-72 sm:px-2"
@@ -168,6 +168,7 @@ const Chat = () => {
             </div>
           </div>
         ))}
+        
         {img.url && (
           <div className="message own">
             <div className="">
@@ -175,7 +176,7 @@ const Chat = () => {
             </div>
           </div>
         )}
-        <div ref={endRef}></div>
+        {/* <div ref={endRef}></div> */}
       </div>
       <div>
         <hr className="opacity-15" />
