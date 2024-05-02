@@ -28,15 +28,6 @@ export const FirebaseProvider = (props) => {
     const [loading, setLoading] = useState(true)
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
 
-    // useEffect(() => {
-    //     const unSub = onAuthStateChanged(firebaseAuth, (user) => {
-    //       fetchUserInfo(user?.uid);
-    //     });
-    //     return () => {
-    //       unSub();
-    //     };
-    //   }, [fetchUserInfo]);
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
             setUser(user);

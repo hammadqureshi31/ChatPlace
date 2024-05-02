@@ -28,7 +28,7 @@ const App = () => {
   const maxW = (width - 25);
   console.log(maxW)
   const maxMD = (width - 100);
-  const high = width < 786 ? height : height-75
+  const high = width < 786 ? height-30 : height-75
 
 
 

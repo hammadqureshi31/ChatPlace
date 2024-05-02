@@ -9,6 +9,8 @@ import { useUserStore } from '../../zustand/userStore';
 import { useChatStore } from '../../zustand/chatStore';
 import { setSignupPage } from '../../Redux/slices/signupSlice';
 import { toast } from 'react-toastify';
+import { FcGoogle } from "react-icons/fc";
+
 
 const Login = () => {
     const firebase = useFirebase();
@@ -43,6 +45,14 @@ const Login = () => {
             toast.error(err.message);
         }
     };
+    const handleGoogle = async () => {
+        console.log("calling");
+        try {
+          await firebase.signinWithGoogle();
+        } catch (error) {
+          console.error('Error handling Google sign-in:', error);
+        }
+      };
 
     return (
         <div className="flex flex-col items-center pt-14 px-4">
@@ -73,14 +83,16 @@ const Login = () => {
                                 {logging ? 'Logging...' : 'Log in' }
                             </button>
 
-                            <div className="mt-4 text-center">
-                                <span className="text-[#5082FC] text-sm cursor-pointer">Sign in with Google</span>
+                            <div className="mt-2 rounded-lg flex gap-5 justify-center text-center p-2" 
+                            onClick={handleGoogle}>
+                                <span className='text-3xl'><FcGoogle /></span>
+                                <span className="text-[#5082FC] pt-1 cursor-pointer">Sign in with Google</span>
                             </div>
                         </Form>
                     )}
                 </Formik>
 
-                <div className="mt-4 text-center flex flex-col gap-2 px-5">
+                <div className="mt-2 text-center flex flex-col gap-2 px-5">
                     <p className="bg-black/25 p-2 rounded-md">Don't have an account?</p>
                     <span  onClick={()=> dispatch(setSignupPage(false))}
                     className="text-[#5082FC] cursor-pointer text-sm">Sign Up</span>

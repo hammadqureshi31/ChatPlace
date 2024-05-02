@@ -159,7 +159,7 @@ const Chat = () => {
       <hr className="opacity-15" />
 
 
-      <div className={`${width > 1400 ? 'h-[560px] flex flex-col overflow-y-scroll' : 'flex flex-col overflow-y-scroll h-[440px]'}`}>
+      <div className={`${width > 1400 ? 'h-[560px] flex flex-col overflow-y-scroll' : 'flex flex-col overflow-y-scroll h-[425px]'}`}>
         {chat?.messages && chat.messages.map(message => (
           <div
             className={message.senderId === currentUser?.id ? "message own bg-[#5082FC] my-1.5 mx-1 p-1.5 rounded-md w-48 sm:w-72 sm:px-2"
@@ -199,7 +199,7 @@ const Chat = () => {
           </div>
           <input
             type="text"
-            className="bg-transparent w-36 sm:w-80 "
+            className="bg-transparent w-44 sm:w-80 "
             placeholder="Type a message"
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -224,7 +224,7 @@ const Chat = () => {
         </button>
       </div>
 
-      <div className="bottom hidden  md:flex md:justify-between md:mt-2 md:px-8 relative">
+      <div className="bottom hidden  md:flex md:justify-between md:mt-4 md:px-8 relative">
 
         <label htmlFor="file">
           <img src="./img.png" alt="" className="w-7 h-7 mt-1" />
