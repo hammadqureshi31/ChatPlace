@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { setChatDisplay } from '../../Redux/slices/displaySlice';
 import { setDetailsPage } from '../../Redux/slices/detailsSlice';
 import EmojiPicker from "emoji-picker-react";
+import useWindowResize from "../../custom hooks/WindowResize";
 
 const Chat = () => {
   const [chat, setChat] = useState({});
@@ -27,6 +28,7 @@ const Chat = () => {
   const { chatId, user } = useChatStore();
   const endRef = useRef(null);
   const dispatch = useDispatch();
+  const { width } = useWindowResize()
 
   const handleClick = () => {
     setDisplay(prev => !prev);
@@ -39,8 +41,11 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (endRef.current) {
+      endRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   }, [chat?.messages]);
+
 
   useEffect(() => {
     if (!chatId) {
@@ -133,7 +138,7 @@ const Chat = () => {
               <AiOutlineArrowLeft />
             </div>
             <img src={user?.avatar || "./avatar.png"} alt=""
-             className="object-cover rounded-full w-10 h-10" />
+              className="object-cover rounded-full w-10 h-10" />
           </div>
           <h2 className="text-lg font-light mt-1" onClick={handleDetail}>
             {user?.username}
@@ -154,21 +159,22 @@ const Chat = () => {
       <hr className="opacity-15" />
 
 
-      <div className="flex flex-col overflow-y-scroll h-[455px]">
+      <div className={`${width > 1400 ? 'h-[560px] flex flex-col overflow-y-scroll' : 'flex flex-col overflow-y-scroll h-[440px]'}`}>
         {chat?.messages && chat.messages.map(message => (
           <div
             className={message.senderId === currentUser?.id ? "message own bg-[#5082FC] my-1.5 mx-1 p-1.5 rounded-md w-48 sm:w-72 sm:px-2"
-              : "message m-1.5 p-1.5 rounded-md w-48 bg-black/25 sm:w-72 sm:px-2"}
+              : "message m-1.5 p-1.5 rounded-md  w-48 bg-black/25 sm:w-72 sm:px-2"}
             key={message?.createdAt}
           >
-            <div className="">
+            <div className="text-wrap overflow-hidden">
               {message.img && <img src={message.img} alt="" className="w-28 h-28" />}
-              <p className="text-lg">{message.text}</p>
+              <p className="text-lg text-wrap overflow-hidden">{message.text}</p>
               <span className="text-xs font-extralight opacity-70">{format(message.createdAt?.toDate())}</span>
             </div>
+            {/* <div ref={endRef}></div> */}
           </div>
         ))}
-        
+
         {img.url && (
           <div className="message own">
             <div className="">
@@ -176,7 +182,6 @@ const Chat = () => {
             </div>
           </div>
         )}
-        {/* <div ref={endRef}></div> */}
       </div>
       <div>
         <hr className="opacity-15" />
@@ -188,8 +193,8 @@ const Chat = () => {
       <div className="bottom  flex justify-between px-1 mt-2 sm:px-2 relative md:hidden">
         <div className="flex gap-2 bg-black/25 p-2 rounded-md">
           <img className="w-5 h-5 sm:mr-3" src="./emoji.png" alt=""
-           onClick={() => setOpen((prev) => !prev)} />
-            <div className="absolute bottom-10 right-0">
+            onClick={() => setOpen((prev) => !prev)} />
+          <div className="absolute bottom-10 right-0">
             <EmojiPicker open={open} onEmojiClick={handleEmoji} />
           </div>
           <input
@@ -230,17 +235,17 @@ const Chat = () => {
           style={{ display: "none" }}
           onChange={handleImg}
         />
-        <img src="./mic.png" alt=""className="w-6 h-6 mt-2 " />
+        <img src="./mic.png" alt="" className="w-6 h-6 mt-2 " />
         <img src="./camera.png" alt="" className="w-6 h-6 mt-2 " />
         <div className="flex flex-row-reverse gap-2 rounded-md">
-          <img className="w-6 h-6 ml-3 mt-2 " src="./emoji.png" alt="" 
-          onClick={() => setOpen(prev => !prev)} />
-           <div className="absolute bottom-10 ">
+          <img className="w-6 h-6 ml-3 mt-2 " src="./emoji.png" alt=""
+            onClick={() => setOpen(prev => !prev)} />
+          <div className="absolute bottom-10 ">
             <EmojiPicker open={open} onEmojiClick={handleEmoji} />
           </div>
           <input
             type="text"
-            className=" w-80 bg-black/25 p-2 rounded-md"
+            className=" w-80 bg-black/25 p-2 rounded-md lg:w-[360px]"
             placeholder="Type a message"
             value={text}
             onChange={(e) => setText(e.target.value)}

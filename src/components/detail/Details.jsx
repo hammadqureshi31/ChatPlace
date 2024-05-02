@@ -97,11 +97,13 @@ const Details = () => {
           </div>
         </div>
 
-        <div className='flex flex-col gap-3 mt-6 md:mt-12'>
+        <div className='flex flex-col gap-3 mt-6 md:mt-8'>
           <button className='bg-red-500 rounded-md p-1.5 text-sm flex justify-center text-center w-full'>Block User</button>
           <button className='bg-[#5082FC] rounded-md p-1.5 text-sm flex justify-center text-center w-full'
           onClick={()=> firebase.logout()}>Logout</button>
         </div>
+
+
       </div>
     </>
   )

@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import Notification from "./components/notification/Notification.jsx";
 
 const App = () => {
-  const { width } = useWindowResize();
+  const { width, height } = useWindowResize();
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
   const { chatId } = useChatStore();
   const firebase = useFirebase();
@@ -28,6 +28,7 @@ const App = () => {
   const maxW = (width - 25);
   console.log(maxW)
   const maxMD = (width - 100);
+  const high = width < 786 ? height : height-75
 
 
 
@@ -63,9 +64,9 @@ const App = () => {
 
   return (
     <>
-      <div className={`${width < 640 ? 'flex justify-center pt-7 h-full w-full' : 'flex justify-center text-center h-full w-full mt-8'}`}>
-        <div className={`container h-[580px] flex flex-col md:w-[w${maxMD}px]`}
-          style={{ width: `${maxW}px`, ...(width > 786 && { maxWidth: `${maxMD}px` }) }}>
+      <div className={`${width < 640 ? 'flex justify-center pt-4 h-full w-full' : 'flex justify-center text-center h-full w-full mt-8'}`}>
+        <div className={`container h-[580px] flex flex-col md:w-[w${maxMD}px] `}
+          style={{ width: `${maxW}px`, ...(width > 786 && { maxWidth: `${maxMD}px` }), height:`${high}px` }}>
           {(width <= 768) ? showLogin ?
             (showList ?
               (showChat ?
