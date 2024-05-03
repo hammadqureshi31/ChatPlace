@@ -3,7 +3,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { SlOptionsVertical } from "react-icons/sl";
 import { useDispatch } from 'react-redux';
 import { setDetailsPage } from '../../Redux/slices/detailsSlice';
-import { useFirebase } from '../../firebase/Firebase';
+import { firebaseAuth, useFirebase } from '../../firebase/Firebase';
 import { useUserStore } from '../../zustand/userStore';
 import { useChatStore } from '../../zustand/chatStore';
 
@@ -100,7 +100,7 @@ const Details = () => {
         <div className='flex flex-col gap-3 mt-6 md:mt-8'>
           <button className='bg-red-500 rounded-md p-1.5 text-sm flex justify-center text-center w-full'>Block User</button>
           <button className='bg-[#5082FC] rounded-md p-1.5 text-sm flex justify-center text-center w-full'
-          onClick={()=> {firebase.logout()}}>Logout</button>
+          onClick={()=>firebase.signOut(firebaseAuth)}>Logout</button>
         </div>
 
 

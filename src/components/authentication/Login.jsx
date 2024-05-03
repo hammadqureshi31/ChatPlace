@@ -21,7 +21,6 @@ const Login = () => {
     const signup = useSelector(state => state.signupPage)
     console.log("I am signup state: ",signup)
 
-
     useEffect(() => {
         const unSub = onAuthStateChanged(firebaseAuth, async(user) => {
           await fetchUserInfo(user?.uid);

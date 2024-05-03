@@ -128,7 +128,7 @@ const Signup = () => {
         <div className='mt-1 text-center px-6'>
           <p className='text-sm'>Already have an account?</p>
           <button onClick={()=>dispatch(setSignupPage(true))}
-           className='text-[#5082FC] cursor-pointer bg-black/25 p-2 rounded-md w-full'>
+           className='text-[#5082FC] cursor-pointer'>
             Log In
           </button>
         </div>
