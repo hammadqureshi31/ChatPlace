@@ -159,7 +159,8 @@ const Chat = () => {
       <hr className="opacity-15" />
 
 
-      <div className={`${width > 1400 ? 'h-[560px] flex flex-col overflow-y-scroll' : 'flex flex-col overflow-y-scroll h-[425px]'}`}>
+      <div className={`${width > 1400 ? 'h-[560px] flex flex-col overflow-y-scroll' :
+       (width < 400 ? 'flex flex-col overflow-y-scroll h-[520px]' : 'flex flex-col overflow-y-scroll h-[425px]')}`}>
         {chat?.messages && chat.messages.map(message => (
           <div
             className={message.senderId === currentUser?.id ? "message own bg-[#5082FC] my-1.5 mx-1 p-1.5 rounded-md w-48 sm:w-72 sm:px-2"
