@@ -170,7 +170,7 @@ const Chat = () => {
             <div className="text-wrap overflow-hidden">
               {message.img && <img src={message.img} alt="" className="w-28 h-28" />}
               <p className="text-lg text-wrap overflow-hidden">{message.text}</p>
-              <span className="text-xs font-extralight opacity-70">{format(message.createdAt?.toDate())}</span>
+              <span className="text-xs font-extralight text-left opacity-70">{format(message.createdAt?.toDate())}</span>
             </div>
             {/* <div ref={endRef}></div> */}
           </div>
